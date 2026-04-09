@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PT Video Model Intake</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <p class="eyebrow">Trainer Session Intelligence</p>
+        <h1>Upload a session video for the ML model.</h1>
+        <p class="hero-copy">
+          This frontend captures one video plus the core trainer-member session
+          metadata, then prepares a clean payload for your backend or model API.
+        </p>
+      </section>
+
+      <section class="layout">
+        <section class="card upload-card">
+          <div class="section-head">
+            <h2>Video Intake</h2>
+            <p>Choose a file, verify the preview, and attach session context.</p>
+          </div>
+
+          <label class="dropzone" for="video-upload" id="dropzone">
+            <input id="video-upload" type="file" accept="video/*" />
+            <span class="badge">Single video input</span>
+            <strong>Drop your video here</strong>
+            <span>or click to browse from your device</span>
+          </label>
+
+          <form id="intake-form" class="form-grid">
+            <label class="field">
+              <span>Session ID</span>
+              <input id="session-id" type="text" placeholder="PT-2026-0042" />
+            </label>
+            <label class="field">
+              <span>Trainer ID</span>
+              <input id="trainer-id" type="text" placeholder="TRN-104" />
+            </label>
+            <label class="field">
+              <span>Member ID</span>
+              <input id="member-id" type="text" placeholder="MEM-8821" />
+            </label>
+            <label class="field">
+              <span>Branch</span>
+              <input id="branch" type="text" placeholder="Koramangala" />
+            </label>
+            <label class="field field-wide">
+              <span>Model Task</span>
+              <textarea
+                id="model-task"
+                rows="4"
+                placeholder="Detect trainer-member interaction, verify a valid PT session, and flag suspicious off-ledger behavior."
+              ></textarea>
+            </label>
+
+            <div class="actions">
+              <button type="submit" class="primary-button">Prepare Payload</button>
+              <p id="status-text" class="status-text">Waiting for a video upload.</p>
+            </div>
+          </form>
+
+          <div class="meta-grid" id="meta-grid" hidden>
+            <div class="meta-item">
+              <span>File name</span>
+              <strong id="file-name">-</strong>
+            </div>
+            <div class="meta-item">
+              <span>File size</span>
+              <strong id="file-size">-</strong>
+            </div>
+            <div class="meta-item">
+              <span>File type</span>
+              <strong id="file-type">-</strong>
+            </div>
+            <div class="meta-item">
+              <span>Duration</span>
+              <strong id="file-duration">-</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="card preview-card">
+          <div class="section-head">
+            <h2>Preview</h2>
+            <p>Review the selected asset before sending it for inference.</p>
+          </div>
+
+          <div class="empty-preview" id="empty-preview">
+            <p>No video selected yet.</p>
+          </div>
+
+          <video id="video-preview" controls playsinline hidden></video>
+        </section>
+      </section>
+
+      <section class="bottom-layout">
+        <section class="card">
+          <div class="section-head">
+            <h2>Payload Preview</h2>
+            <p>The JSON object below is what we can post to the model layer next.</p>
+          </div>
+          <pre id="payload-preview" class="payload-preview"></pre>
+        </section>
+
+        <section class="card">
+          <div class="section-head">
+            <h2>Pipeline Status</h2>
+            <p>The current frontend is ready for the next backend integration step.</p>
+          </div>
+          <div class="pill-row">
+            <span class="pill">Upload</span>
+            <span class="pill">Preview</span>
+            <span class="pill">Metadata</span>
+            <span class="pill">ML payload</span>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

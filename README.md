@@ -5,7 +5,7 @@
 Use this command from the project root:
 
 ```bash
-python3 -m http.server 8000 --bind 127.0.0.1
+python3 -m http.server 8000 --bind 127.0.0.1 --directory public
 ```
 
 Then open:
