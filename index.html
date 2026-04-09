@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PT Session Review</title>
+    <title>PT Video Intake</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,20 +15,20 @@
   <body>
     <main class="page-shell">
       <section class="hero">
-        <p class="eyebrow">PT Session Intelligence</p>
-        <h1>Upload one training video and review the session visually.</h1>
+        <p class="eyebrow">ML Video Intake</p>
+        <h1>Upload a PT session video and prepare it as model input.</h1>
         <p class="hero-copy">
-          Start with a single video upload flow. We can layer fraud signals,
-          trainer-member interaction checks, or session evidence capture on top
-          of this next.
+          This frontend is the first step in the pipeline. A reviewer can upload
+          one video, attach session metadata, preview the asset, and send a
+          clean payload to the ML layer for downstream analysis.
         </p>
       </section>
 
       <section class="workspace">
         <div class="upload-panel panel">
           <div class="panel-header">
-            <h2>Video Upload</h2>
-            <p>Select one video file to preview it in the browser.</p>
+            <h2>Upload Module</h2>
+            <p>Choose one session video and attach the context your model needs.</p>
           </div>
 
           <label class="dropzone" for="video-upload" id="dropzone">
@@ -43,6 +43,42 @@
             <span class="dropzone-meta">MP4, MOV, WEBM and other browser-supported formats</span>
           </label>
 
+          <form class="intake-form" id="intake-form">
+            <div class="field-grid">
+              <label class="field">
+                <span>Session ID</span>
+                <input id="session-id" name="sessionId" type="text" placeholder="PT-2026-0042" />
+              </label>
+              <label class="field">
+                <span>Trainer ID</span>
+                <input id="trainer-id" name="trainerId" type="text" placeholder="TRN-104" />
+              </label>
+              <label class="field">
+                <span>Member ID</span>
+                <input id="member-id" name="memberId" type="text" placeholder="USR-8821" />
+              </label>
+              <label class="field">
+                <span>Branch</span>
+                <input id="branch-name" name="branch" type="text" placeholder="Koramangala" />
+              </label>
+            </div>
+
+            <label class="field field-wide">
+              <span>Analysis Goal</span>
+              <textarea
+                id="analysis-goal"
+                name="analysisGoal"
+                rows="4"
+                placeholder="Example: detect trainer-member interaction, session validity, and suspicious off-ledger behavior."
+              ></textarea>
+            </label>
+
+            <div class="actions">
+              <button class="primary-button" type="submit">Prepare ML Payload</button>
+              <p class="status-copy" id="status-copy">Waiting for video and metadata.</p>
+            </div>
+          </form>
+
           <div class="video-meta" id="video-meta" hidden>
             <div class="meta-row">
               <span>File name</span>
@@ -56,13 +92,17 @@
               <span>Type</span>
               <strong id="meta-type">-</strong>
             </div>
+            <div class="meta-row">
+              <span>Duration</span>
+              <strong id="meta-duration">-</strong>
+            </div>
           </div>
         </div>
 
         <div class="preview-panel panel">
           <div class="panel-header">
             <h2>Preview</h2>
-            <p>Your uploaded video will appear here.</p>
+            <p>The selected session video appears here before model submission.</p>
           </div>
 
           <div class="empty-state" id="empty-state">
@@ -73,13 +113,42 @@
         </div>
       </section>
 
-      <section class="notes panel">
-        <div class="panel-header">
-          <h2>Next Build Step</h2>
-          <p>
-            After upload, we can add frame analysis, trainer-member activity
-            tagging, or suspicious-session evidence capture.
-          </p>
+      <section class="bottom-grid">
+        <div class="notes panel">
+          <div class="panel-header">
+            <h2>ML Payload</h2>
+            <p>
+              This is the client-side payload structure we can send to your
+              backend or model gateway next.
+            </p>
+          </div>
+
+          <pre class="payload-preview" id="payload-preview">{
+  "video": null,
+  "sessionId": "",
+  "trainerId": "",
+  "memberId": "",
+  "branch": "",
+  "analysisGoal": "",
+  "status": "draft"
+}</pre>
+        </div>
+
+        <div class="notes panel">
+          <div class="panel-header">
+            <h2>Next Build Step</h2>
+            <p>
+              After this, we can connect the upload flow to a backend endpoint,
+              a storage bucket, or a model inference API.
+            </p>
+          </div>
+
+          <div class="chip-row">
+            <span class="chip">Video upload</span>
+            <span class="chip">Metadata capture</span>
+            <span class="chip">Payload preview</span>
+            <span class="chip">ML-ready handoff</span>
+          </div>
         </div>
       </section>
     </main>
