@@ -8,6 +8,12 @@ Use this command from the project root:
 python3 -m http.server 8000 --bind 127.0.0.1 --directory public
 ```
 
+Or use:
+
+```bash
+./serve.sh
+```
+
 Then open:
 
 [http://127.0.0.1:8000](http://127.0.0.1:8000)
