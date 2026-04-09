@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PT Session Review</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero">
+        <p class="eyebrow">PT Session Intelligence</p>
+        <h1>Upload one training video and review the session visually.</h1>
+        <p class="hero-copy">
+          Start with a single video upload flow. We can layer fraud signals,
+          trainer-member interaction checks, or session evidence capture on top
+          of this next.
+        </p>
+      </section>
+
+      <section class="workspace">
+        <div class="upload-panel panel">
+          <div class="panel-header">
+            <h2>Video Upload</h2>
+            <p>Select one video file to preview it in the browser.</p>
+          </div>
+
+          <label class="dropzone" for="video-upload" id="dropzone">
+            <input
+              id="video-upload"
+              type="file"
+              accept="video/*"
+              aria-label="Upload a video"
+            />
+            <span class="dropzone-kicker">Drop video here</span>
+            <span class="dropzone-title">or click to choose a file</span>
+            <span class="dropzone-meta">MP4, MOV, WEBM and other browser-supported formats</span>
+          </label>
+
+          <div class="video-meta" id="video-meta" hidden>
+            <div class="meta-row">
+              <span>File name</span>
+              <strong id="meta-name">-</strong>
+            </div>
+            <div class="meta-row">
+              <span>File size</span>
+              <strong id="meta-size">-</strong>
+            </div>
+            <div class="meta-row">
+              <span>Type</span>
+              <strong id="meta-type">-</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="preview-panel panel">
+          <div class="panel-header">
+            <h2>Preview</h2>
+            <p>Your uploaded video will appear here.</p>
+          </div>
+
+          <div class="empty-state" id="empty-state">
+            <p>No video selected yet.</p>
+          </div>
+
+          <video id="video-preview" controls playsinline hidden></video>
+        </div>
+      </section>
+
+      <section class="notes panel">
+        <div class="panel-header">
+          <h2>Next Build Step</h2>
+          <p>
+            After upload, we can add frame analysis, trainer-member activity
+            tagging, or suspicious-session evidence capture.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
